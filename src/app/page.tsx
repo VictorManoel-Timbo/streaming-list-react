@@ -1,14 +1,16 @@
+"use client"
+import React, { useState } from "react";
 
+export default function Home() {
+  const [likes, setLikes] = useState(0);
+  function handleClick() {
+    setLikes(likes + 1);
+  }
 
-function MyButton(): JSX.Element {
-  return <button type="button" className="bg-slate-700 text-white border rounded-md p-2 active:scale-95">butao</button>
-}
-
-export default function App() {
   return (
     <main>
-      main
-      <MyButton/>
+      Main 
+      <button onClick={handleClick}>Like {likes}: </button>
     </main>
   );
 }
