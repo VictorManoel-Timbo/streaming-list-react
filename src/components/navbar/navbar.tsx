@@ -5,6 +5,7 @@ import { RiHeartFill, RiMovie2Fill } from "react-icons/ri";
 import { HiMenu, HiDotsVertical } from "react-icons/hi";
 import { useState } from "react";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 const useMobileMenuState = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,6 +20,7 @@ const useMobileMenuState = () => {
 export default function NavBar() {
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuState();
   const { innerWidth: width } = window;
+  const pathname = usePathname();
 
   return (
     <nav className="bg-cyan-700 min-w-full">
@@ -32,7 +34,7 @@ export default function NavBar() {
           <div className="flex flex-1 items-center justify-center sm:items-center">
             <Link href={"/"} >
               <div className="flex items-center justify-start italic text-white font-semibold text-xl cursor-pointer tracking-wider">
-                { (width >= 640) ? 'Your Streaming List' : 'YKL' }
+                {(width >= 640) ? 'Your Streaming List' : 'YKL'}
                 <RiMovie2Fill className="sm:hidden text-2xl" />
               </div>
             </Link>
@@ -41,7 +43,9 @@ export default function NavBar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <Link href={"/favorites"} className="relative rounded-full bg-cyan-700 p-1 text-gray-300 hover:text-white focus:outline-none focus:text-red-700 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-700 text-2xl">
+            <Link href={"/favorites"} className={clsx("relative rounded-full bg-cyan-700 p-1 text-gray-300 hover:text-white text-2xl", {
+              "outline-none hover:text-red-700 text-red-700 ring-2 ring-white ring-offset-2 ring-offset-gray-700": pathname === "/favorites"
+            })}>
               <RiHeartFill />
             </Link>
             <div className="relative ml-3">

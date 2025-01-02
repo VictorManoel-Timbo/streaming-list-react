@@ -1,7 +1,9 @@
+import StructurePage from "@/components/structurePage/structure-page";
+
 export default function Series() {
     return (
         <main>
-            Series
+            <StructurePage />
         </main>
     );
 }

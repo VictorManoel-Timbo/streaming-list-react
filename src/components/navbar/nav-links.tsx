@@ -7,7 +7,7 @@ const links = [
     { name: 'Home', href: '/', current: true },
     { name: 'Movies', href: '/movies', current: false },
     { name: 'Series', href: '/series', current: false }
-]
+];
 
 export default function NavLinks(): JSX.Element {
     const pathname = usePathname();
