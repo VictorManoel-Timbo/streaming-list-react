@@ -1,17 +1,14 @@
 import { StreamingService } from "./streaming.service";
 import { QueryParams } from "@/models/query-params";
 import StructurePage from "@/components/structurePage/structure-page";
+import { Streamings } from "@/models/streamings";
 
 export default async function Home() {
-  let params: QueryParams = { page: 1 }
-  let test: any = await StreamingService.get(params)
-  console.log(test)
+  let params: QueryParams = { page: 9 }
+  let test: Streamings[] = await StreamingService.get(params,'tv')
   return (
-    <div className="">
-      {test.map((post: any) => (
-        <p key={post.id}>{post.title || post.name}</p>
-      ))}
-      <StructurePage />
-    </div>
+    <>
+      <StructurePage streamings={test} />
+    </>
   )
 }
